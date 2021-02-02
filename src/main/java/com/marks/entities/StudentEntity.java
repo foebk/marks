@@ -19,6 +19,47 @@ public class StudentEntity {
 
     private String name;
 
+    public StudentEntity() {
+    }
+
+    public StudentEntity(String name, String surname, GroupEntity group) {
+        this.name = name;
+        this.surname = surname;
+        this.group = group;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public GroupEntity getGroup() {
+        return group;
+    }
+
+    public void setGroup(GroupEntity group) {
+        this.group = group;
+    }
+
     private String surname;
     @ManyToOne
     private GroupEntity group;
