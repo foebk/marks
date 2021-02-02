@@ -21,4 +21,35 @@ public class GroupEntity {
 
     @OneToMany
     private List<StudentEntity> students;
+
+    public GroupEntity() {
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public List<StudentEntity> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<StudentEntity> students) {
+        this.students = students;
+    }
+
+    public GroupEntity(String code) {
+        this.code = code;
+    }
 }

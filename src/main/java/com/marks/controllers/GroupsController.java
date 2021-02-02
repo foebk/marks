@@ -1,24 +1,29 @@
 package com.marks.controllers;
 
-import com.marks.entities.StudentEntity;
-import com.marks.repos.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.marks.controllers.services.GroupService;
+import com.marks.dtos.Group;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class MarksController {
-    private final StudentRepository studentRepository;
+import java.util.List;
 
-    @Autowired
-    public MarksController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+@RestController
+public class GroupsController {
+    private final GroupService groupService;
+
+    public GroupsController(GroupService groupService) {
+        this.groupService = groupService;
     }
 
     @PostMapping("/addGroup")
-    public String addGroup(@RequestParam("number") String code) {
+    public List<String> addGroup(@RequestBody String code) {
+        return groupService.addGroup(code);
+    }
 
+    @PostMapping("/editGroup")
+    public List<String> editGroup(@RequestBody Group group) {
+
+        return groupService.editGroup(group);
     }
 }
