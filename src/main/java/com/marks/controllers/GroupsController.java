@@ -2,15 +2,13 @@ package com.marks.controllers;
 
 import com.marks.controllers.services.GroupService;
 import com.marks.dtos.Group;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@RestController("/groups")
+@RestController
+@RequestMapping("/group")
 public class GroupsController {
     private final GroupService groupService;
 
