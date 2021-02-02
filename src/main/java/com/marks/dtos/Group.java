@@ -24,4 +24,7 @@ public class Group {
         this.id = id;
         this.code = code;
     }
+
+    public Group() {
+    }
 }
