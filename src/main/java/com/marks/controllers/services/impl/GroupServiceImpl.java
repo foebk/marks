@@ -27,8 +27,8 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<String> addGroup(String code) {
-        groupRepository.save(new GroupEntity(code));
+    public List<String> addGroup(Group group) {
+        groupRepository.save(new GroupEntity(group.getCode()));
 
         return List.of();
     }

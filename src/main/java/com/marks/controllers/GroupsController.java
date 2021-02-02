@@ -17,8 +17,8 @@ public class GroupsController {
     }
 
     @PostMapping("/add")
-    public List<String> addGroup(@RequestBody String code) {
-        return groupService.addGroup(code);
+    public List<String> addGroup(@RequestBody Group group) {
+        return groupService.addGroup(group);
     }
 
     @PostMapping("/edit")
