@@ -1,6 +1,6 @@
 package com.marks.controllers;
 
-import com.marks.controllers.services.GroupService;
+import com.marks.services.GroupService;
 import com.marks.dtos.Group;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +32,12 @@ public class GroupsController {
     }
 
     @PostMapping("/delete")
-    public List<String> deleteGroup(@RequestBody String uuid) {
-        return groupService.deleteGroup(UUID.fromString(uuid));
+    public List<String> deleteGroup(@RequestBody UUID uuid) {
+        return groupService.deleteGroup(uuid);
+    }
+
+    @GetMapping("/getById")
+    public Group getGroupById(@RequestParam("id") String uuid) {
+        return groupService.findGroupById(UUID.fromString(uuid));
     }
 }

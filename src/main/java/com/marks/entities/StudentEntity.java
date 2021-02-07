@@ -1,9 +1,9 @@
 package com.marks.entities;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,10 +22,16 @@ public class StudentEntity {
     public StudentEntity() {
     }
 
-    public StudentEntity(String name, String surname, GroupEntity group) {
+    public StudentEntity(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public StudentEntity(String name, String surname, GroupEntity group, List<MarkEntity> marks) {
         this.name = name;
         this.surname = surname;
         this.group = group;
+        this.marks = marks;
     }
 
     public UUID getId() {
@@ -61,6 +67,19 @@ public class StudentEntity {
     }
 
     private String surname;
+
     @ManyToOne
+    @JoinColumn(name = "group_id")
     private GroupEntity group;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MarkEntity> marks;
+
+    public List<MarkEntity> getMarks() {
+        return marks;
+    }
+
+    public void setMarks(List<MarkEntity> marks) {
+        this.marks = marks;
+    }
 }

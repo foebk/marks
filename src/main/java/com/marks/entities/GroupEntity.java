@@ -19,7 +19,7 @@ public class GroupEntity {
 
     private String code;
 
-    @OneToMany
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudentEntity> students;
 
     public GroupEntity() {

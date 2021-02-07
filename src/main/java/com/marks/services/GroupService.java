@@ -1,4 +1,4 @@
-package com.marks.controllers.services;
+package com.marks.services;
 
 import com.marks.dtos.Group;
 
@@ -13,4 +13,6 @@ public interface GroupService {
     List<String> deleteGroup(UUID id);
 
     List<Group> findAllGroups();
+
+    Group findGroupById(UUID id);
 }

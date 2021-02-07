@@ -1,9 +1,10 @@
-package com.marks.controllers.services.impl;
+package com.marks.services.impl;
 
-import com.marks.controllers.services.GroupService;
 import com.marks.dtos.Group;
+import com.marks.dtos.Student;
 import com.marks.entities.GroupEntity;
 import com.marks.repos.GroupRepository;
+import com.marks.services.GroupService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public List<String> editGroup(Group group) {
         var errors = new ArrayList<String>();
-        var editable = groupRepository.findById(UUID.fromString(group.getId())).orElse(null);
+        var editable = groupRepository.findById(group.getId()).orElse(null);
 
         try {
             if (ObjectUtils.isEmpty(editable)) {
@@ -61,8 +62,27 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public List<Group> findAllGroups() {
-        return groupRepository.findAll().stream().map(group -> new Group(group.getId().toString(), group.getCode()))
-                .collect(Collectors.toList());
+        return groupRepository.findAll().stream().map(group -> {
+            var students = group.getStudents().stream()
+                    .map(entity -> new Student(
+                            entity.getId(),
+                            entity.getName(),
+                            entity.getSurname()))
+                    .collect(Collectors.toList());
+            return new Group(group.getId(), group.getCode(), students);
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public Group findGroupById(UUID id) {
+        var groupEntity = groupRepository.findById(id).orElse(null);
+        var students = groupEntity.getStudents().stream().map(entity -> new Student(
+                entity.getId(),
+                entity.getName(),
+                entity.getSurname()))
+        .collect(Collectors.toList());
+
+        return new Group(groupEntity.getId(), groupEntity.getCode(), students);
     }
 
     private GroupEntity groupEdittor(GroupEntity editable, Group group) {

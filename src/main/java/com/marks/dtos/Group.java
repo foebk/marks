@@ -1,8 +1,21 @@
 package com.marks.dtos;
 
+import java.util.List;
+import java.util.UUID;
+
 public class Group {
-    private String id;
+    private UUID id;
     private String code;
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    private List<Student> students;
 
     public String getCode() {
         return code;
@@ -12,17 +25,23 @@ public class Group {
         this.code = code;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public Group(String id, String code) {
+    public Group(UUID id, String code) {
         this.id = id;
         this.code = code;
+    }
+
+    public Group(UUID id, String code, List<Student> students) {
+        this.id = id;
+        this.code = code;
+        this.students = students;
     }
 
     public Group() {
