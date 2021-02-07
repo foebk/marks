@@ -38,7 +38,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<String> editStudent(StudentRequest student) {
         var editable = studentRepository.findById(student.getId()).orElse(null);
-        groupRepository.findById(student.getGroupId()).ifPresent(groupEntity -> studentRepository.save(studentEditor(editable, student)));
+        studentRepository.save(studentEditor(editable, student));
 
         return null;
     }
@@ -77,7 +77,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentEntity studentEditor(StudentEntity editable, StudentRequest student) {
         Optional.ofNullable(student.getName()).ifPresent(editable::setName);
         Optional.ofNullable(student.getSurname()).ifPresent(editable::setSurname);
-        if (student.getId() != null) {
+        if (student.getGroupId() != null) {
             editable.setGroup(groupRepository.findById(student.getGroupId()).orElse(null));
         }
 
