@@ -1,11 +1,14 @@
 package com.marks.dtos;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.UUID;
 
 public class Student {
     private UUID id;
     private String name;
     private String surname;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Group group;
 
     public Student(UUID id, String name, String surname) {

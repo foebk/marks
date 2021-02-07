@@ -1,6 +1,7 @@
 package com.marks.controllers;
 
 import com.marks.dtos.Student;
+import com.marks.dtos.StudentRequest;
 import com.marks.services.StudentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +18,12 @@ public class StudentsController {
     }
 
     @PostMapping("/add")
-    public List<String> addStudent(@RequestBody Student student) {
+    public List<String> addStudent(@RequestBody StudentRequest student) {
         return studentService.addStudent(student);
     }
 
     @PostMapping("/edit")
-    public List<String> editStudent(@RequestBody Student student) {
+    public List<String> editStudent(@RequestBody StudentRequest student) {
         return studentService.editStudent(student);
     }
 

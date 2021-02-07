@@ -2,6 +2,7 @@ package com.marks.services.impl;
 
 import com.marks.dtos.Group;
 import com.marks.dtos.Student;
+import com.marks.dtos.StudentRequest;
 import com.marks.entities.StudentEntity;
 import com.marks.repos.GroupRepository;
 import com.marks.repos.StudentRepository;
@@ -24,8 +25,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<String> addStudent(Student student) {
-        var group = groupRepository.findById(student.getGroup().getId()).orElse(null);
+    public List<String> addStudent(StudentRequest student) {
+        var group = groupRepository.findById(student.getGroupId()).orElse(null);
 
         var studentEntity = new StudentEntity(student.getName(), student.getSurname());
         studentEntity.setGroup(group);
@@ -35,9 +36,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<String> editStudent(Student student) {
+    public List<String> editStudent(StudentRequest student) {
         var editable = studentRepository.findById(student.getId()).orElse(null);
-        studentRepository.save(studentEditor(editable, student));
+        groupRepository.findById(student.getGroupId()).ifPresent(groupEntity -> studentRepository.save(studentEditor(editable, student)));
 
         return null;
     }
@@ -73,11 +74,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
-    private StudentEntity studentEditor(StudentEntity editable, Student student) {
+    private StudentEntity studentEditor(StudentEntity editable, StudentRequest student) {
         Optional.ofNullable(student.getName()).ifPresent(editable::setName);
         Optional.ofNullable(student.getSurname()).ifPresent(editable::setSurname);
-        if (student.getGroup() != null) {
-            editable.setGroup(groupRepository.findById(student.getGroup().getId()).orElse(null));
+        if (student.getId() != null) {
+            editable.setGroup(groupRepository.findById(student.getGroupId()).orElse(null));
         }
 
         return editable;

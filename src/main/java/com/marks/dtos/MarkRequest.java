@@ -5,23 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.UUID;
 
-public class Mark {
+public class MarkRequest {
     private UUID id;
     @JsonProperty(value = "isVisited")
     private boolean isVisited;
     private Date date;
-    private Discipline discipline;
-    private Student studentId;
+    private UUID disciplineId;
+    private UUID studentId;
 
-    public Mark(UUID id, boolean isVisited, Date date, Discipline discipline, Student studentId) {
-        this.id = id;
-        this.isVisited = isVisited;
-        this.date = date;
-        this.discipline = discipline;
-        this.studentId = studentId;
-    }
-
-    public Mark() {
+    public MarkRequest() {
     }
 
     public UUID getId() {
@@ -46,5 +38,21 @@ public class Mark {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public UUID getDisciplineId() {
+        return disciplineId;
+    }
+
+    public void setDisciplineId(UUID disciplineId) {
+        this.disciplineId = disciplineId;
+    }
+
+    public UUID getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(UUID studentId) {
+        this.studentId = studentId;
     }
 }
