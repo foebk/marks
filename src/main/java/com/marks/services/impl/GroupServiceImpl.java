@@ -45,7 +45,7 @@ public class GroupServiceImpl implements GroupService {
                 logger.error(errors.get(0));
             }
             else {
-                groupRepository.save(groupEdittor(editable, group));
+                groupRepository.save(groupEditor(editable, group));
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class GroupServiceImpl implements GroupService {
         return new Group(groupEntity.getId(), groupEntity.getCode(), students);
     }
 
-    private GroupEntity groupEdittor(GroupEntity editable, Group group) {
+    private GroupEntity groupEditor(GroupEntity editable, Group group) {
         Optional.ofNullable(group.getCode()).ifPresent(editable::setCode);
 
         return editable;

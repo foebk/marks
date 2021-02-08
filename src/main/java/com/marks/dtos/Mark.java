@@ -10,13 +10,15 @@ public class Mark {
     @JsonProperty(value = "isVisited")
     private boolean isVisited;
     private Date date;
+    private Integer mark;
     private Discipline discipline;
     private Student studentId;
 
-    public Mark(UUID id, boolean isVisited, Date date, Discipline discipline, Student studentId) {
+    public Mark(UUID id, boolean isVisited, Date date, Integer mark, Discipline discipline, Student studentId) {
         this.id = id;
         this.isVisited = isVisited;
         this.date = date;
+        this.mark = mark;
         this.discipline = discipline;
         this.studentId = studentId;
     }
@@ -46,5 +48,29 @@ public class Mark {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getMark() {
+        return mark;
+    }
+
+    public void setMark(Integer mark) {
+        this.mark = mark;
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(Discipline discipline) {
+        this.discipline = discipline;
+    }
+
+    public Student getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Student studentId) {
+        this.studentId = studentId;
     }
 }

@@ -30,7 +30,7 @@ public class DisciplineServiceImpl implements DisciplineService {
     @Override
     public List<String> editDiscipline(Discipline discipline) {
         disciplineRepository.save(
-                editDiscipline(disciplineRepository.findById(discipline.getId()).orElse(null), discipline));
+                disciplineEditor(disciplineRepository.findById(discipline.getId()).orElse(null), discipline));
 
         return null;
     }
@@ -49,8 +49,14 @@ public class DisciplineServiceImpl implements DisciplineService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Discipline findDisciplineById(UUID id) {
+        var disciplineEntity = disciplineRepository.findById(id).orElse(null);
+        return new Discipline(disciplineEntity.getId(), disciplineEntity.getName());
+    }
 
-    private DisciplineEntity editDiscipline(DisciplineEntity editable, Discipline discipline) {
+
+    private DisciplineEntity disciplineEditor(DisciplineEntity editable, Discipline discipline) {
         if (editable != null) {
             Optional.of(discipline.getName()).ifPresent(editable::setName);
         }

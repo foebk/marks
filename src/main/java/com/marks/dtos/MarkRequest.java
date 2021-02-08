@@ -2,13 +2,14 @@ package com.marks.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.UUID;
 
 public class MarkRequest {
     private UUID id;
     @JsonProperty(value = "isVisited")
     private boolean isVisited;
+    private Integer mark;
     private Date date;
     private UUID disciplineId;
     private UUID studentId;
@@ -54,5 +55,13 @@ public class MarkRequest {
 
     public void setStudentId(UUID studentId) {
         this.studentId = studentId;
+    }
+
+    public Integer getMark() {
+        return mark;
+    }
+
+    public void setMark(Integer mark) {
+        this.mark = mark;
     }
 }

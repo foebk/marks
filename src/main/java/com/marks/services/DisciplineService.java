@@ -13,4 +13,6 @@ public interface DisciplineService {
     List<String> deleteDiscipline(UUID id);
 
     List<Discipline> findAllDisciplines();
+
+    Discipline findDisciplineById(UUID id);
 }
