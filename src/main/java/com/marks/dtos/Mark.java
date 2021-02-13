@@ -1,13 +1,10 @@
 package com.marks.dtos;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.Date;
 import java.util.UUID;
 
 public class Mark {
     private UUID id;
-    @JsonProperty(value = "isVisited")
     private boolean isVisited;
     private Date date;
     private Integer mark;
