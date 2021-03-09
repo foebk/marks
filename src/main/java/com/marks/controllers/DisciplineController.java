@@ -1,6 +1,7 @@
 package com.marks.controllers;
 
 import com.marks.dtos.Discipline;
+import com.marks.dtos.IdModel;
 import com.marks.services.DisciplineService;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,8 @@ public class DisciplineController {
     }
 
     @PostMapping("/delete")
-    public List<String> deleteDiscipline(@RequestBody UUID id) {
-        return disciplineService.deleteDiscipline(id);
+    public List<String> deleteDiscipline(@RequestBody IdModel id) {
+        return disciplineService.deleteDiscipline(id.getId());
     }
 
     @GetMapping("/getAll")

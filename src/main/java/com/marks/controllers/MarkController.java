@@ -1,5 +1,6 @@
 package com.marks.controllers;
 
+import com.marks.dtos.IdModel;
 import com.marks.dtos.Mark;
 import com.marks.dtos.MarkRequest;
 import com.marks.services.MarkService;
@@ -51,7 +52,7 @@ public class MarkController {
     }
 
     @PostMapping("/delete")
-    public List<String> deleteStudent(@RequestBody UUID id) {
-        return markService.deleteMark(id);
+    public List<String> deleteStudent(@RequestBody IdModel id) {
+        return markService.deleteMark(id.getId());
     }
 }
