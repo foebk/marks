@@ -40,7 +40,7 @@ public class StudentsController {
     }
 
     @GetMapping("/getById")
-    public Student getStudentById(UUID id) {
+    public Student getStudentById(@RequestParam("id") UUID id) {
         return studentService.getStudentById(id);
     }
 }
